@@ -13,7 +13,7 @@ import lombok.Data;
 @Builder
 @Document(collection = "log")
 @JsonIgnoreProperties(value = {
-        "id","date"
+        "id"
 },allowGetters = true)
 public class Log {
     

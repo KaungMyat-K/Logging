@@ -1,6 +1,5 @@
 package com.log.services;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,6 @@ public class LogService {
 
     public void save(Log log){
         log.setId(generateId());
-        log.setDate(LocalDateTime.now().toString());
         logRepo.save(log);
     }
 
@@ -27,8 +25,7 @@ public class LogService {
     }
 
     private Long generateId(){
-
-        return null;
+        return (long)(Math.random()*1001);
     }
 
 }
