@@ -25,7 +25,6 @@ public class Interceptor implements HandlerInterceptor {
        
         try {
             System.out.println("1 - preHandle()");
-            
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -51,7 +50,7 @@ public class Interceptor implements HandlerInterceptor {
        
         try {
             System.out.println("3 - afterCompletionHandle()");
-            var log = creatLog(String.valueOf(response.getStatus()), request.getRequestURL().toString(),request.getMethod());
+            var log = creatLog("interceptor : afterCompletion",String.valueOf(response.getStatus()), request.getRequestURL().toString(),request.getMethod(),ex != null ? ex.getMessage() : "");
             webClient.post()
                      .uri(new URI("http://localhost:8081/log/saveLog"))
                      .body(Mono.just(log),Log.class)
@@ -65,8 +64,10 @@ public class Interceptor implements HandlerInterceptor {
     }
 
 
-    private Log creatLog(String statusCode,String url,String method){
+    private Log creatLog(String name,String statusCode,String url,String method,String message){
         return Log.builder()
+                .name(name)
+                .message(message)
                 .statusCode(statusCode)
                 .date(LocalDateTime.now().toString())
                 .url(url)

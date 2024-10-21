@@ -19,6 +19,7 @@ public class Log {
     
     @Id
     private Long id;
+    private String name;
     private String message;
     private String statusCode;
     private String date;

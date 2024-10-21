@@ -1,7 +1,6 @@
 package com.test.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,9 +18,6 @@ import com.test.repo.UserRepo;
 
 @Configuration
 public class ApplicationConfig {
-
-    @Value("${logapi.url}")
-    private String LOG_API_URL;
 
     @Autowired
     private UserRepo userRepo;
@@ -57,7 +53,6 @@ public class ApplicationConfig {
     @Bean
     WebClient webClient(){
         return WebClient.builder()
-                .baseUrl(LOG_API_URL)
                 .build();
     }
 

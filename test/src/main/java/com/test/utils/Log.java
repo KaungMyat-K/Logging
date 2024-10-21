@@ -7,6 +7,8 @@ import lombok.Data;
 @Builder
 public class Log {
     
+    private String name;
+    private String message;
     private String statusCode;
     private String date;
     private String url;
