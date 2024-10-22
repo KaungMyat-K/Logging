@@ -2,7 +2,12 @@ package com.test.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.test.response.DefaultResponse;
+
+
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -16,14 +21,15 @@ public class DemoController {
         return ResponseEntity.ok("hello from end point");
     }
 
-    @GetMapping("/getException")
-    public ResponseEntity<String> exception() {
+    @GetMapping(value = "/getException",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> exception() {
        try {
             getException();
-            return ResponseEntity.ok("exception endpoint");
+            return ResponseEntity.ok(DefaultResponse.builder().message("no error").build());
         } catch (Exception e) {
             e.getStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Server error: " + e.getMessage());
+            DefaultResponse res = DefaultResponse.builder().message("smth wrong!!!").build();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(res);
         }       
     }
     
