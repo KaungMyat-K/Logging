@@ -13,7 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import reactor.core.publisher.Mono;
 
-@RestControllerAdvice
+//@RestControllerAdvice
 public class HandleException {
 
     @Autowired
