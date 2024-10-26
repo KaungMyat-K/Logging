@@ -19,10 +19,11 @@ public class Log {
     
     @Id
     private Long id;
-    private String name;
+    private String projectName;
     private String message;
     private String statusCode;
     private String date;
     private String url;
     private String method;
+    private String exceptionName;
 }

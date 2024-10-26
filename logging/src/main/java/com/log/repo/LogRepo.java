@@ -7,5 +7,4 @@ import com.log.entity.Log;
 
 @Repository
 public interface LogRepo extends MongoRepository<Log,Long>  {
-    
 }
