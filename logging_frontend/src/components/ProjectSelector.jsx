@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { AiOutlineSearch } from 'react-icons/ai';
+import { BiChevronDown } from 'react-icons/bi';
 
 export default function ProjectSelector() {
 
@@ -16,7 +18,8 @@ export default function ProjectSelector() {
   }, []);
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
+    <div className='bg-gray-900 font-Poppins flex  h-screen items-center justify-center'>
+    <div className="flex items-center justify-center h-screen ">
       <div className="w-80 font-medium">
         {/* Dropdown Header */}
         <div
@@ -84,6 +87,7 @@ export default function ProjectSelector() {
           </div>
         </ul>
       </div>
+    </div>
     </div>
   )
 }

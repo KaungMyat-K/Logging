@@ -1,11 +1,12 @@
 import './App.css'
+import HomePage from './pages/HomePage'
+import TablePage from './pages/TablePage'
 
 function App() {
   return (
     <>
-        <h1 className="text-3xl font-bold underline">
-          Hello world!
-        </h1>
+      {/* <HomePage/> */}
+      <TablePage/>
     </>
   )
 }

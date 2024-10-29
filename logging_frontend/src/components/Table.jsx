@@ -1,19 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 export default function Table() {
+  
+
   return (
-    <section className="container mx-auto p-6 font-mono">
-      <div className="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
-        <div className="w-full overflow-x-auto">
+    <>
+  <section className="container mx-auto p-6">
+    <div className="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
+      <div className="w-full overflow-x-auto">
+        <table className="w-full">
+          <thead className="bg-gray-100 sticky top-0 z-10">
+            <tr className="text-md font-semibold tracking-wide text-left text-gray-900 uppercase border-b border-gray-600">
+              <th className="px-4 py-3 w-1/4">Name</th>
+              <th className="px-4 py-3 w-1/4">Age</th>
+              <th className="px-4 py-3 w-1/4">Status</th>
+              <th className="px-4 py-3 w-1/4">Date</th>
+            </tr>
+          </thead>
+        </table>
+        <div className="overflow-y-auto max-h-96">
           <table className="w-full">
-            <thead>
-              <tr className="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
-                <th className="px-4 py-3">Name</th>
-                <th className="px-4 py-3">Age</th>
-                <th className="px-4 py-3">Status</th>
-                <th className="px-4 py-3">Date</th>
-              </tr>
-            </thead>
             <tbody className="bg-white">
               {[
                 {
@@ -90,43 +96,35 @@ export default function Table() {
                 },
               ].map((user, index) => (
                 <tr key={index} className="text-gray-700">
-                  <td className="px-4 py-3 border">
+                  <td className="px-4 py-3 border w-1/4">
                     <div className="flex items-center text-sm">
-                      <div className="relative w-8 h-8 mr-3 rounded-full md:block">
-                        <img
-                          className="object-cover w-full h-full rounded-full"
-                          src="https://images.pexels.com/photos/5212324/pexels-photo-5212324.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"
-                          alt={`${user.name}`}
-                          loading="lazy"
-                        />
-                        <div
-                          className="absolute inset-0 rounded-full shadow-inner"
-                          aria-hidden="true"
-                        ></div>
-                      </div>
                       <div>
                         <p className="font-semibold text-black">{user.name}</p>
-                        <p className="text-xs text-gray-600">{user.role}</p>
                       </div>
                     </div>
                   </td>
-                  <td className="px-4 py-3 text-ms font-semibold border">
+                  <td className="px-4 py-3 text-ms font-semibold border w-1/4">
                     {user.age}
                   </td>
-                  <td className="px-4 py-3 text-xs border">
+                  <td className="px-4 py-3 text-xs border w-1/4">
                     <span
                       className={`px-2 py-1 font-semibold leading-tight text-${user.statusColor}-700 bg-${user.statusColor}-100 rounded-sm`}
                     >
                       {user.status}
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-sm border">{user.date}</td>
+                  <td className="px-4 py-3 text-sm border w-1/4">{user.date}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       </div>
-    </section>
-  )
+    </div>
+  </section>
+</>
+
+  
+  );
 }
+
