@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai';
 import { BiChevronDown } from 'react-icons/bi';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function ProjectSelector() {
 
+  const dispatcher = useDispatch();
+  const data = useSelector(state => state.log.projectName);
+  
   const [countries, setCountries] = useState(null);
   const [inputValue, setInputValue] = useState("");
   const [selected, setSelected] = useState("");
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    fetch("https://restcountries.com/v2/all?fields=name")
-      .then((res) => res.json())
-      .then((data) => {
-        setCountries(data);
-      });
+    dispatcher(fetchProjectName())
   }, []);
 
   return (
@@ -61,27 +61,27 @@ export default function ProjectSelector() {
 
           {/* Country List */}
           <div className="max-h-48 overflow-y-auto">
-            {countries?.map((country) => (
+            {data?.map((data) => (
               <li
-                key={country?.name}
+                key={data}
                 className={`p-3 text-sm hover:bg-sky-600 hover:text-white cursor-pointer transition-colors duration-200 ${
-                  country?.name?.toLowerCase() === selected?.toLowerCase()
+                  data?.toLowerCase() === selected?.toLowerCase()
                     ? "bg-sky-600 text-white"
                     : "text-gray-900"
                 } ${
-                  country?.name?.toLowerCase().startsWith(inputValue)
+                  data?.toLowerCase().startsWith(inputValue)
                     ? "block"
                     : "hidden"
                 }`}
                 onClick={() => {
-                  if (country?.name?.toLowerCase() !== selected.toLowerCase()) {
-                    setSelected(country?.name);
+                  if (data?.toLowerCase() !== selected.toLowerCase()) {
+                    setSelected(data);
                     setOpen(false);
                     setInputValue("");
                   }
                 }}
               >
-                {country?.name}
+                {data}
               </li>
             ))}
           </div>
