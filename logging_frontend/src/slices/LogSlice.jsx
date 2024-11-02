@@ -9,7 +9,7 @@ const initialState = {
 }
 
 export const fetchProjectName = createAsyncThunk("fetchProjectName",async ()=>{
-    const res = await axios.get("http://localhost:8081/log/getByFilter");
+    const res = await axios.get("http://localhost:8081/log/getProjectName");
     return res.data;
 })
 
@@ -18,6 +18,7 @@ export const fetchFilterItem = createAsyncThunk("fetchFilterItem",async (project
     const res = await axios.get("http://localhost:8081/log/getFilterItem/"+projectName);
     return res.data;
 })
+
 
 const LogSlice = createSlice({
     name : 'log',
@@ -28,11 +29,11 @@ const LogSlice = createSlice({
         builder.addCase(fetchProjectName.pending,(state)=>{
             state.loading = true
         })
-        builder.addCase(fetchProjectName.pending,(state,action)=>{
+        builder.addCase(fetchProjectName.fulfilled,(state,action)=>{
             state.loading = false
             state.projectName = action.payload;
         })
-        builder.addCase(fetchProjectName.pending,(state,action)=>{
+        builder.addCase(fetchProjectName.rejected,(state,action)=>{
             state.loading = false
             state.projectName = []
             state.error = action.error.message
@@ -42,11 +43,11 @@ const LogSlice = createSlice({
         builder.addCase(fetchFilterItem.pending,(state)=>{
             state.loading = true
         })
-        builder.addCase(fetchFilterItem.pending,(state,action)=>{
+        builder.addCase(fetchFilterItem.fulfilled,(state,action)=>{
             state.loading = false
             state.filterItem = action.payload;
         })
-        builder.addCase(fetchFilterItem.pending,(state,action)=>{
+        builder.addCase(fetchFilterItem.rejected,(state,action)=>{
             state.loading = false
             state.filterItem = []
             state.error = action.error.message

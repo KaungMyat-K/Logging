@@ -35,4 +35,9 @@ public class LogController {
     public ResponseEntity<Object> getFilterItem(@PathVariable String project) {
         return ResponseEntity.ok(logService.findFilterItem(project));
     }
+
+    @GetMapping("/getProjectName")
+    public ResponseEntity<Object> getProjectName() {
+        return ResponseEntity.ok(logService.getProjectName());
+    }
 }

@@ -2,13 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai';
 import { BiChevronDown } from 'react-icons/bi';
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchProjectName } from '../slices/LogSlice';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProjectSelector() {
 
+  const navigator = useNavigate();
   const dispatcher = useDispatch();
   const data = useSelector(state => state.log.projectName);
-  
-  const [countries, setCountries] = useState(null);
+
   const [inputValue, setInputValue] = useState("");
   const [selected, setSelected] = useState("");
   const [open, setOpen] = useState(false);
@@ -78,6 +80,7 @@ export default function ProjectSelector() {
                     setSelected(data);
                     setOpen(false);
                     setInputValue("");
+                    navigator("/table/"+data);    
                   }
                 }}
               >

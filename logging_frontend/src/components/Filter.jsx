@@ -1,6 +1,12 @@
 import React from 'react'
 
-export default function Filter() {
+export default function Filter(props) {
+
+  const status = props.status;
+  const method = props.method;
+
+  console.log(status,method);
+
   return (
     <>
         
@@ -11,14 +17,24 @@ export default function Filter() {
       className="px-4 py-2 border border-gray-300 rounded-md"
     >
       <option value="">No choose</option>
-      <option value="">No choose</option>
+      {status?.map((data,index)=>{
+        return(
+          <option key={index} value={data}>{data}</option>)
+      })
+      }
+        
+      
     </select>
     <select
       placeholder="method"
       className="px-4 py-2 border border-gray-300 rounded-md"
     >
       <option value="">No choose</option>
-      <option value="">No choose</option>
+      {method?.map((data,index)=>{
+        return(
+          <option key={index} value={data}>{data}</option>)
+      })
+      }
     </select>
     <input
       placeholder="startdate"
